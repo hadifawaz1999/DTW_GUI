@@ -2,6 +2,7 @@ from tkinter import *
 import numpy as np
 from tkinter import font
 from utils import load_data
+import time
 
 x,xlabels,y,ylabels=load_data("SmoothSubspace")
 x=np.around(x[0],4)
@@ -9,9 +10,15 @@ y=np.around(y[0],4)
 
 gui = Tk()
 gui.title("DTW")
-# gui.geometry("500x500")
+# gui.geometry("1024x1024")
 
-my_font = font.Font(size=20)
+ts_length=int(x.shape[0])
+
+font_size=ts_length//10
+if font_size < 7:
+    font_size=5
+
+my_font = font.Font(size=font_size)
 
 labels = []
 
@@ -54,6 +61,9 @@ def dtw(x, y, gui):
                                      bd=10, relief="ridge"))
             labels[i-1][j-1]['font'] = my_font
             labels[i-1][j-1].grid(row=i+1, column=j+1)
+    
+    # gui.update_idletasks()
+    gui.update()
 
     i, j = n, m
     while True:
@@ -71,6 +81,8 @@ def dtw(x, y, gui):
         if i == 0 and j == 0:
             l_zero['bg'] = "yellow"
             break
+        gui.update()
+        time.sleep(0.3)
     return dtw_matrix
 
 
