@@ -16,7 +16,7 @@ ts_length=int(x.shape[0])
 
 font_size=ts_length//10
 if font_size < 7:
-    font_size=5
+    font_size=10
 
 my_font = font.Font(size=font_size)
 
@@ -82,7 +82,7 @@ def dtw(x, y, gui):
             l_zero['bg'] = "yellow"
             break
         gui.update()
-        time.sleep(0.3)
+        time.sleep(0.2)
     return dtw_matrix
 
 
