@@ -16,7 +16,7 @@ ts_length = int(x.shape[0])
 
 font_size = ts_length//10
 if font_size < 7:
-    font_size = 10
+    font_size = 20
 
 my_font = font.Font(size=font_size)
 
@@ -81,11 +81,11 @@ def dtw(x, y, w, gui):
             labels[i-1][jstop-1]['text'] = str(dtw_matrix[i, jstop])
             warping_window.append((i-1, jstop-1))
 
-    gui.update()
+    # gui.update()
 
     for itr in range(len(warping_window)):
         labels[warping_window[itr][0]][warping_window[itr][1]]['bg']='red'
-        time.sleep(0.2)
+        time.sleep(0.1)
         gui.update()
 
     i, j, k = n, m, 0
